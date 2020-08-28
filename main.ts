@@ -153,7 +153,7 @@ Dave.setPosition(15, 55)
 Dave.setFlag(SpriteFlag.StayInScreen, true)
 Dave.setKind(SpriteKind.Player)
 //  set up player controls
-controller.moveSprite(Dave)
+controller.moveSprite(Dave, 200, 200)
 //  setup enemies
 game.onUpdateInterval(2000, function on_update_interval2() {
     let gloop = sprites.create(img`
@@ -185,7 +185,6 @@ game.onUpdateInterval(2000, function on_update_interval2() {
     gloop.setPosition(130, randint(30, 100))
     gloop.setKind(SpriteKind.Enemy)
     gloop.setVelocity(-40, 0)
-    gloop.setFlag(SpriteFlag.StayInScreen, true)
     let bat = sprites.create(img`
     . . . . . . . . . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . . . . . . . . . .
@@ -215,7 +214,6 @@ game.onUpdateInterval(2000, function on_update_interval2() {
     bat.setPosition(130, randint(50, 110))
     bat.setKind(SpriteKind.Food)
     bat.setVelocity(-30, 0)
-    bat.setFlag(SpriteFlag.StayInScreen, true)
 })
 //  setup projectile
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {

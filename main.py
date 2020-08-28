@@ -155,7 +155,7 @@ Dave.set_flag(SpriteFlag.StayInScreen, True)
 Dave.set_kind(SpriteKind.player)
 
 # set up player controls
-controller.move_sprite(Dave)
+controller.move_sprite(Dave, 200, 200)
 
 # setup enemies
 def on_update_interval2():
@@ -188,7 +188,6 @@ def on_update_interval2():
     gloop.set_position(130, randint(30, 100))
     gloop.set_kind(SpriteKind.enemy)
     gloop.set_velocity(-40, 0)
-    gloop.set_flag(SpriteFlag.StayInScreen, True)
     bat = sprites.create(img("""
     . . . . . . . . . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . . . . . . . . . .
@@ -218,7 +217,6 @@ def on_update_interval2():
     bat.set_position(130, randint(50, 110))
     bat.set_kind(SpriteKind.food)
     bat.set_velocity(-30, 0)
-    bat.set_flag(SpriteFlag.StayInScreen, True)
 game.on_update_interval(2000, on_update_interval2)
 
 # setup projectile
