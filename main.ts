@@ -185,6 +185,7 @@ game.onUpdateInterval(2000, function on_update_interval2() {
     gloop.setPosition(130, randint(30, 100))
     gloop.setKind(SpriteKind.Enemy)
     gloop.setVelocity(-40, 0)
+    gloop.setFlag(SpriteFlag.StayInScreen, true)
     let bat = sprites.create(img`
     . . . . . . . . . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . . . . . . . . . .
@@ -214,6 +215,7 @@ game.onUpdateInterval(2000, function on_update_interval2() {
     bat.setPosition(130, randint(50, 110))
     bat.setKind(SpriteKind.Food)
     bat.setVelocity(-30, 0)
+    bat.setFlag(SpriteFlag.StayInScreen, true)
 })
 //  setup projectile
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
@@ -247,19 +249,33 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() 
 })
 //  when projectile and enemy overlaps
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function on_overlap(sprite: Sprite, otherSprite: Sprite) {
-    otherSprite.destroy()
+    otherSprite.destroy(effects.spray, 100)
     sprite.destroy()
     info.changeScoreBy(2)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function on_overlap2(sprite: Sprite, otherSprite: Sprite) {
     sprite.destroy()
-    otherSprite.destroy()
+    otherSprite.destroy(effects.fountain, 50)
     info.changeScoreBy(1)
+    if (info.score() % 20 === 0) {
+        if (info.life() < 5) {
+            info.changeLifeBy(1)
+        }
+        
+    }
+    
 })
 //  when player and enemies overlaps
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_overlap3(sprite: Sprite, otherSprite: Sprite) {
     otherSprite.destroy()
     info.changeLifeBy(-1)
+    if (info.score() % 20 === 0) {
+        if (info.life() < 5) {
+            info.changeLifeBy(1)
+        }
+        
+    }
+    
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function on_overlap4(sprite: Sprite, otherSprite: Sprite) {
     otherSprite.destroy()

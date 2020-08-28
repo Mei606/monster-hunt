@@ -188,6 +188,7 @@ def on_update_interval2():
     gloop.set_position(130, randint(30, 100))
     gloop.set_kind(SpriteKind.enemy)
     gloop.set_velocity(-40, 0)
+    gloop.set_flag(SpriteFlag.StayInScreen, True)
     bat = sprites.create(img("""
     . . . . . . . . . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . . . . . . . . . .
@@ -217,6 +218,7 @@ def on_update_interval2():
     bat.set_position(130, randint(50, 110))
     bat.set_kind(SpriteKind.food)
     bat.set_velocity(-30, 0)
+    bat.set_flag(SpriteFlag.StayInScreen, True)
 game.on_update_interval(2000, on_update_interval2)
 
 # setup projectile
@@ -252,21 +254,27 @@ controller.A.on_event(ControllerButtonEvent.PRESSED, on_event_pressed)
 
 # when projectile and enemy overlaps
 def on_overlap(sprite, otherSprite):
-    otherSprite.destroy()
+    otherSprite.destroy(effects.spray, 100)
     sprite.destroy()
     info.change_score_by(2)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_overlap)
 
 def on_overlap2(sprite, otherSprite):
     sprite.destroy()
-    otherSprite.destroy()
+    otherSprite.destroy(effects.fountain, 50)
     info.change_score_by(1)
+    if info.score() % 20 is 0:
+        if info.life() < 5:
+            info.change_life_by(1)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.food, on_overlap2)
 
 # when player and enemies overlaps
 def on_overlap3(sprite, otherSprite):
     otherSprite.destroy()
     info.change_life_by(-1)
+    if info.score() % 20 is 0:
+        if info.life() < 5:
+            info.change_life_by(1)
 sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_overlap3)
 
 def on_overlap4(sprite, otherSprite):
