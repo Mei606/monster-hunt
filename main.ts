@@ -1,4 +1,4 @@
-//  scene/background
+//  scene/game
 scene.setBackgroundImage(img`
     f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 1 1 1 1 1 1 1 f f f f 1
     f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 d d d 1 1 1 1 1 1 1 1 1
@@ -123,6 +123,9 @@ scene.setBackgroundImage(img`
 `)
 info.setScore(0)
 info.setLife(3)
+forever(function on_forever() {
+    music.playMelody("C5 F A F E F D A ", 150)
+})
 //  setup player
 let Dave = sprites.create(img`
     . . . . . . . a a a a a a . . . . . . .
@@ -215,30 +218,30 @@ game.onUpdateInterval(2000, function on_update_interval2() {
 //  setup projectile
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
     let blast = sprites.createProjectileFromSprite(img`
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . 6 6 6 6 6 6 6 . . . . .
-    . . . . . . . . . . 6 6 9 9 9 9 9 9 9 9 . . . .
-    . . . . . . . . 6 6 9 9 9 9 9 9 9 9 9 9 9 . . .
-    . . . . . . 6 6 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
-    . . . . 6 6 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . 6 9 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . 6 9 9 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . . . 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . . . . . 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . . . . . . . . 9 9 9 9 9 9 8 8 8 8 8 9 . .
-    . . . . . . . . . . . 9 9 9 9 9 9 9 9 9 9 . . .
-    . . . . . . . . . . . . . . 9 9 9 9 9 9 . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . 9 9 9 9 9 9 9 9 . . . .
+        . . . . . . . . . . 9 9 9 9 9 9 9 9 9 9 9 9 . .
+        . . . . . . . . 9 9 9 9 9 9 9 9 9 8 8 8 9 9 . .
+        . . . . . . 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
+        . . . . . 9 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
+        . . . . . . . 9 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
+        . . . . . . . . . . 9 9 9 9 9 9 9 8 8 8 9 9 . .
+        . . . . . . . . . . . . 9 9 9 9 9 9 9 9 9 . . .
+        . . . . . . . . . . . . . . 9 9 9 9 9 9 . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
     `, Dave, 50, 0)
     blast.setKind(SpriteKind.Projectile)
 })
@@ -255,6 +258,10 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function on_overlap2(s
 })
 //  when player and enemies overlaps
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_overlap3(sprite: Sprite, otherSprite: Sprite) {
+    otherSprite.destroy()
+    info.changeLifeBy(-1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function on_overlap4(sprite: Sprite, otherSprite: Sprite) {
     otherSprite.destroy()
     info.changeLifeBy(-1)
 })

@@ -1,4 +1,4 @@
-# scene/background
+# scene/game
 scene.set_background_image(img("""
     f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 1 1 1 1 1 1 1 f f f f 1
     f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 d d d 1 1 1 1 1 1 1 1 1
@@ -123,6 +123,9 @@ scene.set_background_image(img("""
 """))
 info.set_score(0)
 info.set_life(3)
+def on_forever():
+    music.play_melody("C5 F A F E F D A ", 150)
+forever(on_forever)
 
 # setup player
 Dave = sprites.create(img("""
@@ -219,30 +222,30 @@ game.on_update_interval(2000, on_update_interval2)
 # setup projectile
 def on_event_pressed():
     blast = sprites.create_projectile_from_sprite(img("""
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . 6 6 6 6 6 6 6 . . . . .
-    . . . . . . . . . . 6 6 9 9 9 9 9 9 9 9 . . . .
-    . . . . . . . . 6 6 9 9 9 9 9 9 9 9 9 9 9 . . .
-    . . . . . . 6 6 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
-    . . . . 6 6 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . 6 9 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . 6 9 9 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . . . 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . . . . . 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 .
-    . . . . . . . . . . 9 9 9 9 9 9 8 8 8 8 8 9 . .
-    . . . . . . . . . . . 9 9 9 9 9 9 9 9 9 9 . . .
-    . . . . . . . . . . . . . . 9 9 9 9 9 9 . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . 9 9 9 9 9 9 9 9 . . . .
+        . . . . . . . . . . 9 9 9 9 9 9 9 9 9 9 9 9 . .
+        . . . . . . . . 9 9 9 9 9 9 9 9 9 8 8 8 9 9 . .
+        . . . . . . 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
+        . . . . . 9 9 9 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
+        . . . . . . . 9 9 9 9 9 9 9 9 9 8 8 8 8 8 9 . .
+        . . . . . . . . . . 9 9 9 9 9 9 9 8 8 8 9 9 . .
+        . . . . . . . . . . . . 9 9 9 9 9 9 9 9 9 . . .
+        . . . . . . . . . . . . . . 9 9 9 9 9 9 . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
     """), Dave, 50, 0)
     blast.set_kind(SpriteKind.projectile)
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_event_pressed)
@@ -266,4 +269,7 @@ def on_overlap3(sprite, otherSprite):
     info.change_life_by(-1)
 sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_overlap3)
 
-
+def on_overlap4(sprite, otherSprite):
+    otherSprite.destroy()
+    info.change_life_by(-1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.food, on_overlap4)
