@@ -125,6 +125,7 @@ info.setScore(0)
 info.setLife(3)
 forever(function on_forever() {
     music.playMelody("C5 F A F E F D A ", 150)
+    music.playMelody("A D F E F A F C5", 120)
 })
 //  setup player
 let Dave = sprites.create(img`
@@ -153,7 +154,7 @@ Dave.setPosition(15, 55)
 Dave.setFlag(SpriteFlag.StayInScreen, true)
 Dave.setKind(SpriteKind.Player)
 //  set up player controls
-controller.moveSprite(Dave, 200, 200)
+controller.moveSprite(Dave, 100, 100)
 //  setup enemies
 game.onUpdateInterval(2000, function on_update_interval2() {
     let gloop = sprites.create(img`

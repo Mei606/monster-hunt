@@ -125,6 +125,7 @@ info.set_score(0)
 info.set_life(3)
 def on_forever():
     music.play_melody("C5 F A F E F D A ", 150)
+    music.play_melody("A D F E F A F C5", 120)
 forever(on_forever)
 
 # setup player
@@ -155,7 +156,7 @@ Dave.set_flag(SpriteFlag.StayInScreen, True)
 Dave.set_kind(SpriteKind.player)
 
 # set up player controls
-controller.move_sprite(Dave, 200, 200)
+controller.move_sprite(Dave, 100, 100)
 
 # setup enemies
 def on_update_interval2():
