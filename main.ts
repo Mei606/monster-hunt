@@ -122,7 +122,7 @@ scene.setBackgroundImage(img`
     b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b
 `)
 info.setScore(0)
-info.setLife(3)
+info.setLife(2)
 forever(function on_forever() {
     music.playMelody("C5 F A F E F D A ", 150)
     music.playMelody("A D F E F A F C5", 120)
@@ -156,7 +156,7 @@ Dave.setKind(SpriteKind.Player)
 //  set up player controls
 controller.moveSprite(Dave, 100, 100)
 //  setup enemies
-game.onUpdateInterval(2000, function on_update_interval2() {
+game.onUpdateInterval(1000, function on_update_interval2() {
     let gloop = sprites.create(img`
     . . . . . . . . . . c . . . . . . . . . . . . .
     . . . . . . . . c c a c c c c c c c . . . . . .

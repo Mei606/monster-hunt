@@ -122,7 +122,7 @@ scene.set_background_image(img("""
     b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b
 """))
 info.set_score(0)
-info.set_life(3)
+info.set_life(2)
 def on_forever():
     music.play_melody("C5 F A F E F D A ", 150)
     music.play_melody("A D F E F A F C5", 120)
@@ -218,7 +218,7 @@ def on_update_interval2():
     bat.set_position(130, randint(50, 110))
     bat.set_kind(SpriteKind.food)
     bat.set_velocity(-30, 0)
-game.on_update_interval(2000, on_update_interval2)
+game.on_update_interval(1000, on_update_interval2)
 
 # setup projectile
 def on_event_pressed():
