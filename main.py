@@ -155,7 +155,7 @@ Dave.set_position(15, 55)
 Dave.set_flag(SpriteFlag.StayInScreen, True)
 Dave.set_kind(SpriteKind.player)
 def on_update():
-    
+    pass
 game.on_update(on_update)
 
 # set up player controls

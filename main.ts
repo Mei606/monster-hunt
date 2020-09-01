@@ -154,9 +154,6 @@ Dave.setPosition(15, 55)
 Dave.setFlag(SpriteFlag.StayInScreen, true)
 Dave.setKind(SpriteKind.Player)
 game.onUpdate(function on_update() {
-    if (Dave.height > 30) {
-        Dave.setPosition(20, 30)
-    }
     
 })
 //  set up player controls
