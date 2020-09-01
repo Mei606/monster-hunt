@@ -154,6 +154,9 @@ Dave = sprites.create(img("""
 Dave.set_position(15, 55)
 Dave.set_flag(SpriteFlag.StayInScreen, True)
 Dave.set_kind(SpriteKind.player)
+def on_update():
+    
+game.on_update(on_update)
 
 # set up player controls
 controller.move_sprite(Dave, 100, 100)
@@ -186,7 +189,7 @@ def on_update_interval2():
     . . . c c a a a a a a a a a a a a a a c c . . .
     . . . . . c c c c c c c c c c c c c c . . . . .
     """))
-    gloop.set_position(130, randint(30, 100))
+    gloop.set_position(130, randint(40, 100))
     gloop.set_kind(SpriteKind.enemy)
     gloop.set_velocity(-40, 0)
     bat = sprites.create(img("""
@@ -256,13 +259,16 @@ def on_overlap(sprite, otherSprite):
     otherSprite.destroy(effects.spray, 100)
     sprite.destroy()
     info.change_score_by(2)
+    if info.score() % 20 is 0:
+        if info.life() < 5:
+            info.change_life_by(1)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_overlap)
 
 def on_overlap2(sprite, otherSprite):
     sprite.destroy()
     otherSprite.destroy(effects.fountain, 50)
     info.change_score_by(1)
-    if info.score() % 20 is 0:
+    if info.score() % 10 is 0:
         if info.life() < 5:
             info.change_life_by(1)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.food, on_overlap2)

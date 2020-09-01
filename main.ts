@@ -153,6 +153,12 @@ let Dave = sprites.create(img`
 Dave.setPosition(15, 55)
 Dave.setFlag(SpriteFlag.StayInScreen, true)
 Dave.setKind(SpriteKind.Player)
+game.onUpdate(function on_update() {
+    if (Dave.height > 30) {
+        Dave.setPosition(20, 30)
+    }
+    
+})
 //  set up player controls
 controller.moveSprite(Dave, 100, 100)
 //  setup enemies
@@ -183,7 +189,7 @@ game.onUpdateInterval(1000, function on_update_interval2() {
     . . . c c a a a a a a a a a a a a a a c c . . .
     . . . . . c c c c c c c c c c c c c c . . . . .
     `)
-    gloop.setPosition(130, randint(30, 100))
+    gloop.setPosition(130, randint(40, 100))
     gloop.setKind(SpriteKind.Enemy)
     gloop.setVelocity(-40, 0)
     let bat = sprites.create(img`
@@ -251,12 +257,19 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function on_overlap(s
     otherSprite.destroy(effects.spray, 100)
     sprite.destroy()
     info.changeScoreBy(2)
+    if (info.score() % 20 === 0) {
+        if (info.life() < 5) {
+            info.changeLifeBy(1)
+        }
+        
+    }
+    
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function on_overlap2(sprite: Sprite, otherSprite: Sprite) {
     sprite.destroy()
     otherSprite.destroy(effects.fountain, 50)
     info.changeScoreBy(1)
-    if (info.score() % 20 === 0) {
+    if (info.score() % 10 === 0) {
         if (info.life() < 5) {
             info.changeLifeBy(1)
         }
