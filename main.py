@@ -160,6 +160,10 @@ game.on_update(on_update)
 
 # set up player controls
 controller.move_sprite(Dave, 100, 100)
+def on_update():
+    if Dave.y < 30:
+       Dave.set_position(20, 35)
+game.on_update(on_update)
 
 # setup enemies
 def on_update_interval2():

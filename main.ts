@@ -158,6 +158,12 @@ game.onUpdate(function on_update() {
 })
 //  set up player controls
 controller.moveSprite(Dave, 100, 100)
+game.onUpdate(function on_update() {
+    if (Dave.y < 30) {
+        Dave.setPosition(20, 35)
+    }
+    
+})
 //  setup enemies
 game.onUpdateInterval(1000, function on_update_interval2() {
     let gloop = sprites.create(img`
