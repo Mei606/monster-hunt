@@ -158,12 +158,6 @@ game.onUpdate(function on_update() {
 })
 //  set up player controls
 controller.moveSprite(Dave, 100, 100)
-game.onUpdate(function on_update() {
-    if (Dave.y < 30) {
-        Dave.setPosition(20, 35)
-    }
-    
-})
 //  setup enemies
 game.onUpdateInterval(1000, function on_update_interval2() {
     let gloop = sprites.create(img`
@@ -261,10 +255,14 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function on_overlap(s
     sprite.destroy()
     info.changeScoreBy(2)
     if (info.score() % 20 === 0) {
-        if (info.life() < 5) {
+        if (info.life() < 3) {
             info.changeLifeBy(1)
         }
         
+    }
+    
+    if (info.score() % 120 === 0) {
+        game.over(true, effects.confetti)
     }
     
 })
@@ -273,7 +271,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function on_overlap2(s
     otherSprite.destroy(effects.fountain, 50)
     info.changeScoreBy(1)
     if (info.score() % 10 === 0) {
-        if (info.life() < 5) {
+        if (info.life() < 3) {
             info.changeLifeBy(1)
         }
         

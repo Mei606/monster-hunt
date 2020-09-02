@@ -160,10 +160,7 @@ game.on_update(on_update)
 
 # set up player controls
 controller.move_sprite(Dave, 100, 100)
-def on_update():
-    if Dave.y < 30:
-       Dave.set_position(20, 35)
-game.on_update(on_update)
+
 
 # setup enemies
 def on_update_interval2():
@@ -264,8 +261,10 @@ def on_overlap(sprite, otherSprite):
     sprite.destroy()
     info.change_score_by(2)
     if info.score() % 20 is 0:
-        if info.life() < 5:
+        if info.life() < 3:
             info.change_life_by(1)
+    if info.score() % 120 is 0:
+       game.over(True, effects.confetti)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_overlap)
 
 def on_overlap2(sprite, otherSprite):
@@ -273,7 +272,7 @@ def on_overlap2(sprite, otherSprite):
     otherSprite.destroy(effects.fountain, 50)
     info.change_score_by(1)
     if info.score() % 10 is 0:
-        if info.life() < 5:
+        if info.life() < 3:
             info.change_life_by(1)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.food, on_overlap2)
 
